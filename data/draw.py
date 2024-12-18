@@ -44,18 +44,18 @@ plt.plot(
     median_points["y"].to_numpy(),
     color="red",
     marker="o",
-    label="Median waiting time",
+    label="Median waiting time (millisecond)",
 )
 
 # Add labels, title, and legend
 plt.xlabel("Requests")
-plt.ylabel("Waiting time in thread queue")
-plt.title("Waiting time of requests to ZKP server")
+plt.ylabel("Waiting time in thread queue (millisecond)")
+plt.title("Waiting time of requests to ECC ZKP server")
 plt.legend()
 plt.grid(True)
 
 # Save the plot as a vector image (SVG or PDF)
-plt.savefig("waiting_time_plot.pdf")  # Saves as PDF (you can change this to 'svg', 'png', etc.)
+plt.savefig("waiting_time_plot_ecc.pdf")  # Saves as PDF (you can change this to 'svg', 'png', etc.)
 
 # Show the plot
 plt.show()

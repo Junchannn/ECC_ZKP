@@ -28,13 +28,13 @@ RUN set -ex && \
     tar -xzC /usr/src/ntl --strip-components=1 -f ntl.tar.gz && \
     rm ntl.tar.gz && \
     cd /usr/src/ntl/src && \
-    ./configure CXXFLAGS="-g -O2 -fPIC -march=native -pthread -std=c++20" && \
+    ./configure NTL_GMP_LIP=on CXXFLAGS="-g -O2 -fPIC -march=native -pthread -std=c++20" && \
     make && \
     make install && \
     rm -rf /usr/src/ntl
 
 # Create directory structure
-RUN touch /data/client_output.txt
+RUN touch /ZKP_client/data/client_output.txt
 
 # Copy project files into the container (adjusted paths)
 COPY client/* /ZKP_client/client/
@@ -43,7 +43,9 @@ COPY data/run_sample_server.py /ZKP_client/data/
 COPY ECC/* /ZKP_client/ECC/
 COPY common/* /ZKP_client/common/
 # Compile the source files into prover_client using C++20 and enable GNU extensions, linking against GMP
-RUN cd /ZKP_client && g++ -std=c++20 -I/user/include/nlohmann -o prover_client common/common.cpp client/*.cpp ZKP/ECC_ZKP.cpp ECC/*.cpp -lntl -pthread
+RUN cd /ZKP_client && g++ -std=c++20 -I/user/include/nlohmann \
+    -o prover_client common/common.cpp client/*.cpp ZKP/ECC_ZKP.cpp ECC/*.cpp -lntl -lgmp -pthread
+
 RUN pip3 install tqdm
 # Expose port for the application (if needed)
 EXPOSE 1337

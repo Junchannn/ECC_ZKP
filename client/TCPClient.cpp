@@ -63,7 +63,7 @@ void TCPClient::processFunc() {
     std::fstream waiting_time;
 
     // Open file only once before the loop starts
-    waiting_time.open("ZKP_client/data/client_output.txt", std::ios::out | std::ios::app);  // Use append mode to avoid overwriting
+    waiting_time.open("/ZKP_client/data/client_output.txt", std::ios::out | std::ios::app);  // Use append mode to avoid overwriting
     if (!waiting_time.is_open()) {
         std::cerr << "Failed to open file client_output.txt" << std::endl;
         return; // Handle file open failure

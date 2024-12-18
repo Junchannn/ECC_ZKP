@@ -15,5 +15,5 @@ services:
       context: .
       dockerfile: client/Dockerfile
     volumes:
-      - ./data/client_output.txt:/data/client_output.txt
+      - ./data/client_output.txt:/ZKP_client/data/client_output.txt
     network_mode: service:zkp_server
