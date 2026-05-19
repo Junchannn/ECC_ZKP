@@ -267,4 +267,5 @@ The current implementation is not intended for production cryptographic use with
 
 ## License
 
-No license has been specified yet. Add a license file if you want to make the project reusable by others.
+No license has been specified yet. 
+
